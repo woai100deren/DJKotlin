@@ -46,4 +46,16 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //协程
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
+
+    //okhttp、retrofit
+    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    //工具类
+    implementation 'com.github.woai100deren:CommonUtils:0.2'
 }

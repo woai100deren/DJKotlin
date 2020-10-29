@@ -1,22 +1,25 @@
 package com.dj.kotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.dj.kotlin.base.BaseActivity
+import com.dj.kotlin.coroutines.CoroutinesActivity
 import com.dj.kotlin.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding.textView.setOnClickListener(this)
+        dataBinding.coroutines.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
+        val int = Intent()
         //kotlin中，when取代switch
         when(v.id){
-            R.id.textView -> Toast.makeText(this,"123123",Toast.LENGTH_SHORT).show()
+            R.id.coroutines ->int.setClass(this@MainActivity,CoroutinesActivity::class.java)//可以简写成：int.setClass(this,CoroutinesActivity::class.java)
         }
+        startActivity(int)
     }
 
     override fun getLayoutRes(): Int {
