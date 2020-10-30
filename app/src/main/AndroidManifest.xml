@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".coroutines.CoroutinesActivity"/>
+        <activity android:name=".basic.BasicActivity"/>
     </application>
 
 </manifest>
