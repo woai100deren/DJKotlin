@@ -1,7 +1,5 @@
 package com.dj.kotlin.coroutines
 
-import android.os.Bundle
-import android.util.Log
 import com.dj.kotlin.R
 import com.dj.kotlin.base.BaseActivity
 import com.dj.kotlin.databinding.ActivityCoroutinesBinding
@@ -14,8 +12,11 @@ import kotlinx.coroutines.*
 class CoroutinesActivity : BaseActivity<ActivityCoroutinesBinding>(){
     private val TAG = CoroutinesActivity::class.java.simpleName
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun getLayoutRes(): Int {
+        return R.layout.activity_coroutines
+    }
+
+    override fun initData() {
         dataBinding.runBlocking.setOnClickListener{
             LogUtils.e(TAG, "主线程id：${mainLooper.thread.id}")
             runBlockingTest()
@@ -23,20 +24,20 @@ class CoroutinesActivity : BaseActivity<ActivityCoroutinesBinding>(){
         }
 
         dataBinding.job.setOnClickListener{
-            jobTest();
+            jobTest()
         }
 
         dataBinding.jobLaunch.setOnClickListener{
-            jobLaunchTest();
+            jobLaunchTest()
         }
 
         dataBinding.async.setOnClickListener{
-            asyncTest();
+            asyncTest()
         }
-    }
 
-    override fun getLayoutRes(): Int {
-        return R.layout.activity_coroutines
+        dataBinding.suspend.setOnClickListener{
+            suspendTest()
+        }
     }
 
     /**
@@ -107,5 +108,29 @@ class CoroutinesActivity : BaseActivity<ActivityCoroutinesBinding>(){
     private suspend fun getResult2(): Int {
         delay(4000)
         return 2
+    }
+
+    private fun suspendTest(){
+        //CoroutineDispatcher，协程调度器，决定协程所在的线程或线程池。它可以指定协程运行于特定的一个线程、一个线程池或者不指定任何线程（这样协程就会运行于当前线程）。coroutines-core中 CoroutineDispatcher 有三种标准实现Dispatchers.Default、Dispatchers.IO，Dispatchers.Main和Dispatchers.Unconfined，Unconfined 就是不指定线程。
+        //suspend为挂起函数，
+//        GlobalScope.launch {
+//            suspendFun1()
+//            suspendFun2()
+//        }
+
+        GlobalScope.launch(Dispatchers.IO) {
+            suspendFun1()
+            suspendFun2()
+        }
+    }
+
+    private suspend fun suspendFun1(){
+        //suspend挂起函数挂起协程时，不会阻塞协程所在的线程
+//        delay(3000)
+        LogUtils.e("suspendFun1当前线程：${Thread.currentThread()}")
+    }
+
+    private fun suspendFun2(){
+        LogUtils.e("suspendFun2当前线程：${Thread.currentThread()}")
     }
 }

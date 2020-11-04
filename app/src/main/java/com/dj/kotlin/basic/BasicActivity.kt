@@ -1,6 +1,5 @@
 package com.dj.kotlin.basic
 
-import android.os.Bundle
 import android.view.View
 import com.dj.kotlin.R
 import com.dj.kotlin.base.BaseActivity
@@ -11,8 +10,13 @@ import com.dj.library.LogUtils
 
 class BasicActivity : BaseActivity<ActivityBasicBinding>(),View.OnClickListener {
     private lateinit var user:User
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun getLayoutRes(): Int {
+        return R.layout.activity_basic
+    }
+
+
+    override fun initData() {
         user = User()
         user.username = "axb"
         user.password = "123"
@@ -21,10 +25,6 @@ class BasicActivity : BaseActivity<ActivityBasicBinding>(),View.OnClickListener 
         dataBinding.withButton.setOnClickListener(this)
         dataBinding.applyButton.setOnClickListener(this)
         dataBinding.extension.setOnClickListener(this)
-    }
-
-    override fun getLayoutRes(): Int {
-        return R.layout.activity_basic
     }
 
     override fun onClick(v: View) {
@@ -96,4 +96,5 @@ class BasicActivity : BaseActivity<ActivityBasicBinding>(),View.OnClickListener 
         }
         return users
     }
+
 }
