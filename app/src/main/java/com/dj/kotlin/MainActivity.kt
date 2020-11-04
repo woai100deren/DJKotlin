@@ -13,6 +13,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),View.OnClickListener {
         dataBinding.coroutines.setOnClickListener(this)
         dataBinding.base.setOnClickListener(this)
         dataBinding.retrofit.setOnClickListener(this)
+        dataBinding.changeColor.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -21,6 +22,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),View.OnClickListener {
             R.id.coroutines ->openActivity(CoroutinesActivity::class.java)
             R.id.base ->openActivity(BasicActivity::class.java)
             R.id.retrofit -> openActivity(RetrofitActivity::class.java)
+            R.id.changeColor -> changeColor()
         }
     }
 
